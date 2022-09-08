@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    properties:
+      hibernate:
+        query:
+          in_clause_parameter_padding: true
+        default_batch_fetch_size: 1000
+        jdbc:
+          batch_size: 1000
+          time_zone: UTC
+          
+  h2:
+    console:
+      enabled: false
+
+
+handlebars:
+  cache: false
+  allow-session-override: true
+  expose-session-attributes: true
