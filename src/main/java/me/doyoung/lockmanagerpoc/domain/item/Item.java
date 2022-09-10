@@ -1,4 +1,4 @@
-package me.doyoung.lockmanagerpoc.domain;
+package me.doyoung.lockmanagerpoc.domain.item;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -24,12 +24,13 @@ public class Item {
         this.name = name;
     }
 
-    public static Item ofName(String name) {
-        return new Item(name);
+    public Item(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
     }
 
-    public void update(Item item) {
-        this.name = item.getName();
-        this.quantity = item.getQuantity();
+    public void update(ItemCommand.Update updateCommand) {
+        this.name = updateCommand.getName();
+        this.quantity = updateCommand.getQuantity();
     }
 }
