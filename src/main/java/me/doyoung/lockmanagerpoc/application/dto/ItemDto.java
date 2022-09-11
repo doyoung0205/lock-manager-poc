@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import me.doyoung.lockmanagerpoc.domain.item.ItemCommand;
 import me.doyoung.lockmanagerpoc.domain.item.Item;
 
@@ -12,6 +13,7 @@ public final class ItemDto {
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @ToString
     public static class Response {
 
         private Long id;
@@ -33,6 +35,7 @@ public final class ItemDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @AllArgsConstructor
+    @ToString
     public static class UpdateRequest {
         private String name;
         private int quantity;
@@ -45,6 +48,7 @@ public final class ItemDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     @AllArgsConstructor
+    @ToString
     public static class SaveRequest {
         private String name;
         private int quantity;

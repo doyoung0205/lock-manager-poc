@@ -1,4 +1,4 @@
-package me.doyoung.lockmanagerpoc.domain;
+package me.doyoung.lockmanagerpoc.domain.user;
 
 import lombok.AccessLevel;
 import lombok.Builder;
