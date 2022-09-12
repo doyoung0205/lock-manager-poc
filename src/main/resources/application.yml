@@ -5,6 +5,11 @@ spring:
   devtools:
     livereload:
       enabled: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: html
+    cache: false
+    check-template-location: true
   jpa:
     show-sql: false
     hibernate:
@@ -20,11 +25,4 @@ spring:
           time_zone: UTC
           
   h2:
-    console:
-      enabled: false
-
-
-handlebars:
-  cache: false
-  allow-session-override: true
-  expose-session-attributes: true
+    console: true
