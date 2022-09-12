@@ -1,24 +1,22 @@
 package me.doyoung.lockmanagerpoc.domain.item;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "t_item")
 public class Item {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int quantity;
+
+    protected Item() {
+    }
 
     public Item(String name, int quantity) {
         this.name = name;
@@ -28,5 +26,17 @@ public class Item {
     public void update(ItemCommand.Update updateCommand) {
         this.name = updateCommand.getName();
         this.quantity = updateCommand.getQuantity();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

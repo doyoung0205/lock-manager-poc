@@ -11,9 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class ItemService {
     private final ItemRepository itemRepository;
+
+    public ItemService(ItemRepository itemRepository) {
+        this.itemRepository = itemRepository;
+    }
 
     @Transactional(readOnly = true)
     public ItemDto.Response getItem(Long id) {

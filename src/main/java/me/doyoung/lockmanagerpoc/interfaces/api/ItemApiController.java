@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/items")
 public class ItemApiController {
     private final ItemService itemService;
+
+    public ItemApiController(ItemService itemService) {
+        this.itemService = itemService;
+    }
 
     @PostMapping
     public ResponseEntity<ItemDto.Response> saveItem(@RequestBody ItemDto.SaveRequest request) {

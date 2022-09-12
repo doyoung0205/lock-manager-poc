@@ -1,24 +1,25 @@
 package me.doyoung.lockmanagerpoc.application.dto;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import me.doyoung.lockmanagerpoc.domain.item.ItemCommand;
 import me.doyoung.lockmanagerpoc.domain.item.Item;
+import me.doyoung.lockmanagerpoc.domain.item.ItemCommand;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ItemDto {
+    private ItemDto() {
+    }
 
-    @Getter
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    @ToString
     public static class Response {
+        private Response() {
+        }
 
         private Long id;
         private String name;
         private int quantity;
+
+        public Response(Long id, String name, int quantity) {
+            this.id = id;
+            this.name = name;
+            this.quantity = quantity;
+        }
 
         public Response(Item item) {
             this.id = item.getId();
@@ -30,31 +31,93 @@ public final class ItemDto {
         public static Response from(Item item) {
             return new Response(item);
         }
+
+        public Long getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        @Override
+        public String toString() {
+            return "Response{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", quantity=" + quantity +
+                    '}';
+        }
     }
 
-    @Getter
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    @AllArgsConstructor
-    @ToString
     public static class UpdateRequest {
+        private UpdateRequest() {
+        }
+
         private String name;
         private int quantity;
+
+        public UpdateRequest(String name, int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+        }
 
         public ItemCommand.Update toCommand() {
             return new ItemCommand.Update(name, quantity);
         }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        @Override
+        public String toString() {
+            return "UpdateRequest{" +
+                    "name='" + name + '\'' +
+                    ", quantity=" + quantity +
+                    '}';
+        }
     }
 
-    @Getter
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    @AllArgsConstructor
-    @ToString
+
     public static class SaveRequest {
+        private SaveRequest() {
+        }
+
+        public SaveRequest(String name, int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+        }
+
         private String name;
         private int quantity;
 
         public Item toEntity() {
             return new Item(name, quantity);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        @Override
+        public String toString() {
+            return "SaveRequest{" +
+                    "name='" + name + '\'' +
+                    ", quantity=" + quantity +
+                    '}';
         }
     }
 }

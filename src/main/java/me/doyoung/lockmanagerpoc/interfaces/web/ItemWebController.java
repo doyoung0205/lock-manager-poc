@@ -2,21 +2,22 @@ package me.doyoung.lockmanagerpoc.interfaces.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("pages")
+@RequestMapping("/pages")
 public class ItemWebController {
 
-    @RequestMapping("/items")
+    @GetMapping("/items")
     public String routeItemListPage() {
-        return "item/list";
+        return "pages/items/list";
     }
 
-    @RequestMapping("/items/{itemId:[\\d]+}")
+    @GetMapping("/items/{itemId:\\d+}")
     public String routeItemDetailPage(@PathVariable Long itemId) {
-        return "item/detail";
+        return "/pages/items/detail";
     }
 }
