@@ -25,6 +25,6 @@ public class ItemWebController {
     @GetMapping("/items/{itemId:\\d+}")
     public String routeItemDetailPage(Model model, @PathVariable Long itemId) {
         model.addAttribute("item", itemService.getItem(itemId));
-        return "/pages/items/detail";
+        return "/pages/items/form";
     }
 }
