@@ -10,7 +10,11 @@
 <body>
 <th:block layout:fragment="header" th:include="/fragments/header"></th:block>
 
+
 <div layout:fragment="content" class="content container">
+    <div class="alert alert-primary" role="alert">
+        <span id="concurrentUser"></span> 님이 보고있습니다.
+    </div>
 
     <ul class="list-group">
         <li class="list-group-item active" aria-current="true">상품 작성</li>
@@ -34,8 +38,12 @@
 
 <script>
     $(function () {
-
-
+        const websocket = new WebSocket("ws://localhost:8080/ws/lock");
+        websocket.onmessage = onMessage;
+        function onMessage(msg) {
+            console.log('msg', msg.data);
+            $("#concurrentUser").text(msg.data);
+        }
     })
 </script>
 

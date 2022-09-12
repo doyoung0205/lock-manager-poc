@@ -15,8 +15,6 @@ public class LockManagerPocApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LockManagerPocApplication.class, args);
-
-
     }
 
     @Component
