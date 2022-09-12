@@ -5,11 +5,15 @@ spring:
   devtools:
     livereload:
       enabled: true
+    restart:
+      enabled: false
+
   thymeleaf:
     cache: false
     check-template-location: true
+
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: create
     open-in-view: false
