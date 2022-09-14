@@ -36,7 +36,6 @@ public class LockHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         log.info("클라이언트 접속 {}", session);
-
         users.put(session.getId(), session.getPrincipal());
         sessions.add(session);
         handleTextMessage(session, new TextMessage(getUserArray()));
@@ -52,7 +51,6 @@ public class LockHandler extends TextWebSocketHandler {
     }
 
     private static String getUserArray() {
-        System.out.println("users.toString() = " + users);
         return sessions.stream()
                 .map(WebSocketSession::getId)
                 .map(users::get)
