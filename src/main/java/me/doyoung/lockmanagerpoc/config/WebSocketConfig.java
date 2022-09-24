@@ -21,9 +21,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(lockHandler, "ws/lock").setAllowedOrigins("*");
     }
-
     //.withSockJS() 추가
     //setAllowedOrigins("*")에서 *라는 와일드 카드를 사용하면
     //보안상의 문제로 전체를 허용하는 것보다 직접 하나씩 지정해주어야 한다고 한다.
-
 }
