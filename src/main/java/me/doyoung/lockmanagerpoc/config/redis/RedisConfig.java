@@ -41,15 +41,15 @@ public class RedisConfig {
 
     @PostConstruct
     public void redisServer() throws IOException {
-        int port = isRedisRunning() ? findAvailablePort() : this.port;
+        int availablePort = isRedisRunning() ? findAvailablePort() : this.port;
         redisServer = RedisServer.builder()
-                .port(port)
+                .port(availablePort)
                 .setting("maxmemory 128M") //maxheap 128M
                 .build();
         redisServer.start();
 
-        this.port = port;
-        log.info("EmbeddedRedis server {} port start ", port);
+        this.port = availablePort;
+        log.info("EmbeddedRedis server {} availablePort start ", availablePort);
     }
 
     @PreDestroy
@@ -71,10 +71,10 @@ public class RedisConfig {
      */
     public int findAvailablePort() throws IOException {
 
-        for (int port = 10000; port <= 65535; port++) {
-            Process process = executeGrepProcessCommand(port);
+        for (int availablePort = 10000; availablePort <= 65535; availablePort++) {
+            Process process = executeGrepProcessCommand(availablePort);
             if (!isRunning(process)) {
-                return port;
+                return availablePort;
             }
         }
 
@@ -103,7 +103,8 @@ public class RedisConfig {
                 pidInfo.append(line);
             }
 
-        } catch (Exception e) {
+        } catch (Exception exception) {
+            log.error("throw error At isRunning", exception);
         }
 
         return StringUtils.hasText(pidInfo.toString());
