@@ -39,6 +39,7 @@ public class RedisConfig {
         return redisConnectionFactory;
     }
 
+
     @PostConstruct
     public void redisServer() throws IOException {
         int availablePort = isRedisRunning() ? findAvailablePort() : this.port;
