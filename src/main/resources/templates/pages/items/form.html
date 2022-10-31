@@ -36,14 +36,26 @@
 
 </div>
 
+<!-- socket -->
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script>
     $(function () {
-        const websocket = new WebSocket("ws://localhost:8080/ws/lock");
-        websocket.onmessage = onMessage;
-        function onMessage(msg) {
-            console.log('msg', msg.data);
-            $("#concurrentUser").text(msg.data);
-        }
+
+        const sock = new SockJS('http://localhost:8080/ws/lock');
+        sock.onopen = function () {
+            console.log('open');
+            sock.send('test');
+        };
+
+        sock.onmessage = function (event) {
+            console.log('message', event.data);
+            $("#concurrentUser").text(event.data);
+            sock.close();
+        };
+
+        sock.onclose = function () {
+            console.log('close');
+        };
     })
 </script>
 
